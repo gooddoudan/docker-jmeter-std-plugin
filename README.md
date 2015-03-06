@@ -4,9 +4,6 @@ Docker build file for [JMeter](http://jmeter.apache.org/) with the [JMeter Plugi
 
 This image does not start a server.
 
-Intended usage is to run an interactive shell, and execute JMeter tests within the shell. For example, 
-assuming you have a JMeter test plan in your local `/tmp/myplan/myplan.jmx` folder:
+Intended usage is to run in foreground mode. For example, assuming you have a JMeter test plan `myplan.jmx` and `jmeter.jtl` and `jmeter.properties` files in your local `/tmp/myplan`directory:
 
-* $ `docker run -i -t -v /tmp/myplan/:/tmp/myplan nigelcharman/jmeter-std-plugin /bin/bash`
-* # `cd /tmp/myplan`
-* # `jmeter -n -t myplan.jmx -l jmeter.jtl -p jmeter.properties`
+`docker run --rm -v /tmp/myplan/:/mnt/jmeter-job -w="/mnt/jmeter-job" nigelcharman/jmeter-std-plugin jmeter -n -t myplan.jmx -l jmeter.jtl -p jmeter.properties`
